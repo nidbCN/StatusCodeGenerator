@@ -23,7 +23,7 @@ namespace StatusCodeGenerator
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
-                c.AddServer(new OpenApiServer { Url = "StatusCode" });
+                c.AddServer(new OpenApiServer { Url = "/StatusCode" });
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "StatusCodeGenerator", Version = "v1" });
             });
         }
