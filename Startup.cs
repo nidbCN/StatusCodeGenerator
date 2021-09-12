@@ -23,6 +23,7 @@ namespace StatusCodeGenerator
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
+                c.AddServer(new OpenApiServer { Url = "StatusCode" });
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "StatusCodeGenerator", Version = "v1" });
             });
         }
@@ -33,8 +34,12 @@ namespace StatusCodeGenerator
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "StatusCodeGenerator v1"));
+                app.UseSwagger(opt => opt.RouteTemplate = $"/docs/{{documentName}}/swagger.json");
+                app.UseSwaggerUI(c =>
+                {
+                    c.RoutePrefix = "docs";
+                    c.SwaggerEndpoint("swagger/v1/swagger.json", "StatusCodeGenerator v1");
+                });
             }
 
             app.UseRouting();
