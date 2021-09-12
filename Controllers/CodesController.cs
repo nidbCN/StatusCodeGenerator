@@ -18,7 +18,7 @@ namespace StatusCodeGenerator.Controllers
             _logger = logger ?? throw new ArgumentNullException();
         }
 
-        [HttpGet("/{code}")]
+        [HttpGet("{code}")]
         public IActionResult GeneratCode([FromRoute] int code, [FromQuery] bool customed = false)
         {
             _logger.LogInformation($"Match method GeneratCode, input code {code}");
