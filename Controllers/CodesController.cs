@@ -15,7 +15,7 @@ namespace StatusCodeGenerator.Controllers
 
         public CodesController(ILogger<CodesController> logger)
         {
-            _logger = logger ?? throw new ArgumentNullException();
+            _logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
 
         [HttpGet("{code}")]
